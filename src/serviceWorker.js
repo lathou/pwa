@@ -20,6 +20,19 @@ const isLocalhost = Boolean(
     )
 );
 
+// let deferredPrompt;
+//
+// window.addEventListener('beforeinstallprompt', (e) => {
+//   // Prevent Chrome 67 and earlier from automatically showing the prompt
+//   e.preventDefault();
+//   // Stash the event so it can be triggered later.
+//   deferredPrompt = e;
+// });
+//
+// deferredPrompt.prompt();
+
+console.log('isLocalhost', isLocalhost)
+
 export function register(config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
@@ -59,6 +72,7 @@ function registerValidSW(swUrl, config) {
     .register(swUrl)
     .then(registration => {
       registration.onupdatefound = () => {
+        console.log('updateFound')
         const installingWorker = registration.installing;
         if (installingWorker == null) {
           return;
