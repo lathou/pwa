@@ -73,6 +73,7 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
+
       setTimeout(() => {
         registration.showNotification('Une nouvelle notif', {
           "body": "Did you make a $1,000,000 purchase at Dr. Evil...",
@@ -83,13 +84,15 @@ function registerValidSW(swUrl, config) {
             { "action": "yes", "title": "Yes", "icon": "images/yes.png" },
             { "action": "no", "title": "No", "icon": "images/no.png" }
           ]
-        }, 10000);
-      });
+        })
+      },10000)
+
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
           return;
         }
+
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
@@ -102,8 +105,7 @@ function registerValidSW(swUrl, config) {
               );
 
               if (window.confirm('Une mise à jour a été trouvée, voulez-vous mettre à jour l\'application ?')) {
-                registration.skipWaiting();
-                window.location.reload();
+                registration.update();
               }
 
               // Execute callback
