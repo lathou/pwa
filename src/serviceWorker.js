@@ -73,6 +73,7 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
+      console.log(registration)
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
@@ -90,7 +91,7 @@ function registerValidSW(swUrl, config) {
               );
 
               if (window.confirm('Une mise à jour a été trouvée, voulez-vous mettre à jour l\'application ?')) {
-                navigator.serviceWorker.skipWaiting();
+                navigator.serviceWorker.controller.skipWaiting();
                 window.location.reload();
               }
 
