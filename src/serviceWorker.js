@@ -74,7 +74,6 @@ function registerValidSW(swUrl, config) {
     .register(swUrl)
     .then(registration => {
       registration.onupdatefound = () => {
-        alert('updateFound');
         const installingWorker = registration.installing;
         if (installingWorker == null) {
           return;
