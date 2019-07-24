@@ -73,6 +73,18 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
+      setTimeout(() => {
+        registration.showNotification('Une nouvelle notif', {
+          "body": "Did you make a $1,000,000 purchase at Dr. Evil...",
+          "icon": "images/ccard.png",
+          "vibrate": [200, 100, 200, 100, 200, 100, 400],
+          "tag": "request",
+          "actions": [
+            { "action": "yes", "title": "Yes", "icon": "images/yes.png" },
+            { "action": "no", "title": "No", "icon": "images/no.png" }
+          ]
+        }, 10000);
+      });
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
