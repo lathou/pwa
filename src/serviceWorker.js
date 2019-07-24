@@ -90,7 +90,9 @@ function registerValidSW(swUrl, config) {
                   'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
               );
 
-              registration.update();
+              if (window.confirm('Une mise à jour a été trouvée, voulez-vous mettre à jour l\'application ?')) {
+                registration.update();
+              }
 
               // Execute callback
               if (config && config.onUpdate) {
