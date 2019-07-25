@@ -121,7 +121,7 @@ function registerValidSW(swUrl, config) {
 
               if(window.confirm('Une mise à jour a été trouvée, voulez-vous mettre à jour l\'application ?')) {
                 console.log('post SKIP_WAITING');
-                registration.waiting.postMessage("SKIP_WAITING");
+                registration.waiting.postMessage({type: "SKIP_WAITING"});
                 window.location.reload();
               }
 
