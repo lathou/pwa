@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 const setSomeCookie = () => {
-  document.cookie = 'myCookie' + new Date() + "=" + new Date();
+  document.cookie = 'myCookie' + new Date() + "=" + new Date()
 }
 
 function App() {
