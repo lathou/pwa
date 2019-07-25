@@ -33,8 +33,6 @@ const isLocalhost = Boolean(
 //
 // deferredPrompt.prompt();
 
-console.log('isLocalhost', isLocalhost)
-
 export function register(config) {
   if ('serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
@@ -75,6 +73,7 @@ function registerValidSW(swUrl, config) {
     .then(registration => {
 
       setTimeout(() => {
+        console.lg('notification should be shown');
         registration.showNotification('Une nouvelle notif', {
           "body": "Did you make a $1,000,000 purchase at Dr. Evil...",
           "icon": "images/ccard.png",
