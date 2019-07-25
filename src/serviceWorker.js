@@ -73,7 +73,7 @@ function registerValidSW(swUrl, config) {
     .then(registration => {
 
       setTimeout(() => {
-        console.lg('notification should be shown');
+        console.log('notification should be shown');
         registration.showNotification('Une nouvelle notif', {
           "body": "Did you make a $1,000,000 purchase at Dr. Evil...",
           "icon": "images/ccard.png",
