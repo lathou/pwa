@@ -22,17 +22,6 @@ const isLocalhost = Boolean(
     )
 );
 
-// let deferredPrompt;
-//
-// window.addEventListener('beforeinstallprompt', (e) => {
-//   // Prevent Chrome 67 and earlier from automatically showing the prompt
-//   e.preventDefault();
-//   // Stash the event so it can be triggered later.
-//   deferredPrompt = e;
-// });
-//
-// deferredPrompt.prompt();
-
 export function register(config) {
   if ('serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
@@ -67,7 +56,51 @@ export function register(config) {
   }
 }
 
+const imgPath = "../src/logo.svg";
+
+function displayNotification(message) {
+  if (Notification.permission == 'granted') {
+    console.log('Notification should be shown now');
+    navigator.serviceWorker.getRegistration().then(function(reg) {
+      reg.showNotification('Une nouvelle notif', {
+          "body": message,
+          "icon": imgPath,
+          "vibrate": [200, 100, 200, 100, 200, 100, 400],
+          "tag": "request",
+          "actions": [
+            { "action": "yes", "title": "Yes", "icon": imgPath },
+            { "action": "no", "title": "No", "icon": imgPath }
+          ]
+        });
+    });
+  }
+}
+
 function registerValidSW(swUrl, config) {
+  navigator.serviceWorker.addEventListener("message", event => {
+    // On vérifie si c'est un signal
+    // d'activation
+    if (event.data === "skipWaiting") {
+      // Et si c'est le cas, on force
+      // l'activation
+      navigator.serviceWorker.skipWaiting();
+      window.location.reload();
+    }
+  });
+
+  navigator.serviceWorker.addEventListener('notificationclick', function(e) {
+    var notification = e.notification;
+    var primaryKey = notification.data.primaryKey;
+    var action = e.action;
+    console.log(action)
+
+    if (action === 'close') {
+      notification.close();
+    } else {
+      notification.close();
+    }
+  });
+
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
@@ -89,14 +122,7 @@ function registerValidSW(swUrl, config) {
                   'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
               );
 
-              if (window.confirm('Une mise à jour a été trouvée, voulez-vous mettre à jour l\'application ?')) {
-                console.log(registration.waiting)
-                
-                if(registration.waiting) {
-                  registration.waiting.skipWaiting();
-                  window.location.reload();                  
-                }
-              }
+              displayNotification('Une mise à jour a été trouvée, voulez-vous mettre à jour l\'application ?');
 
               // Execute callback
               if (config && config.onUpdate) {
@@ -159,3 +185,5 @@ export function unregister() {
     });
   }
 }
+
+
