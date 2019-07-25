@@ -6,25 +6,6 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-
-
-console.log(Notification.permission);
-
-Notification.requestPermission(function(status) {
-    console.log('Notification permission status:', status);
-});
-
-
-
-function updateSW(){
-	navigator.serviceWorker
-		.getRegistration()
-		.then(registration => {
-			registration.waiting
-			  .postMessage("skipWaiting");
-	});
-}
-
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA

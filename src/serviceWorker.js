@@ -56,6 +56,10 @@ export function register(config) {
   }
 }
 
+Notification.requestPermission(function(status) {
+    console.log('Notification permission status:', status);
+});
+
 const imgPath = "../src/logo.svg";
 
 function displayNotification(message, registration) {
@@ -74,18 +78,17 @@ function displayNotification(message, registration) {
   }
 }
 
-function registerValidSW(swUrl, config) {
-  navigator.serviceWorker.addEventListener("message", event => {
-    // On vérifie si c'est un signal
-    // d'activation
-    if (event.data === "skipWaiting") {
-      console.log('skipWaiting')
-      // Et si c'est le cas, on force
-      // l'activation
-      navigator.serviceWorker.skipWaiting();
-      window.location.reload();
-    }
+
+function updateSW(){
+  navigator.serviceWorker
+    .getRegistration()
+    .then(registration => {
+      registration.waiting
+        .postMessage("SKIP_WAITING");
   });
+}
+
+function registerValidSW(swUrl, config) {
 
   navigator.serviceWorker.addEventListener('notificationclick', function(e) {
     var notification = e.notification;

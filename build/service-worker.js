@@ -14,8 +14,21 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/pwa/build/precache-manifest.89e56d0de99372fa4eec491c614f533a.js"
+  "/pwa/build/precache-manifest.e762a07cc853af14efd041402cc7655a.js"
 );
+
+  self.addEventListener('notificationclick', function(e) {
+    var notification = e.notification;
+    var primaryKey = notification.data.primaryKey;
+    var action = e.action;
+    console.log(action)
+
+    if (action === 'close') {
+      notification.close();
+    } else {
+      notification.close();
+    }
+  });
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
