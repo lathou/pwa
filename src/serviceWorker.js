@@ -71,6 +71,18 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
+
+      console.log(this)
+
+      this.addEventListener('install', function(event) {
+        // The promise that skipWaiting() returns can be safely ignored.
+        this.skipWaiting();
+
+        // Perform any other actions required for your
+        // service worker to install, potentially inside
+        // of event.waitUntil();
+      });
+
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {

@@ -21,6 +21,7 @@ const imgPath = "../src/logo.svg";
 
 function displayNotification() {
   if (Notification.permission == 'granted') {
+  	console.log('Notification should be shown now');
     navigator.serviceWorker.getRegistration().then(function(reg) {
       reg.showNotification('Une nouvelle notif', {
           "body": "Hello, I'm a notification !",
