@@ -72,17 +72,6 @@ function registerValidSW(swUrl, config) {
     .register(swUrl)
     .then(registration => {
 
-      console.log(navigator.serviceWorker)
-
-      navigator.serviceWorker.addEventListener('install', function(event) {
-        // The promise that skipWaiting() returns can be safely ignored.
-        navigator.serviceWorker.skipWaiting();
-
-        // Perform any other actions required for your
-        // service worker to install, potentially inside
-        // of event.waitUntil();
-      });
-
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
@@ -101,7 +90,9 @@ function registerValidSW(swUrl, config) {
               );
 
               if (window.confirm('Une mise à jour a été trouvée, voulez-vous mettre à jour l\'application ?')) {
-                registration.update();
+                console.log(navigator.serviceWorker)
+                navigator.serviceWorker.skipWaiting();
+                window.location.reload();
               }
 
               // Execute callback
@@ -133,7 +124,7 @@ function checkValidServiceWorker(swUrl, config) {
   fetch(swUrl)
     .then(response => {
         console.log('has fetched');
-        
+
       // Ensure service worker exists, and that we really are getting a JS file.
       const contentType = response.headers.get('content-type');
       if (
