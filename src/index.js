@@ -17,17 +17,19 @@ Notification.requestPermission(function(status) {
     console.log('Notification permission status:', status);
 });
 
+const imgPath = "../src/logo.svg";
+
 function displayNotification() {
   if (Notification.permission == 'granted') {
     navigator.serviceWorker.getRegistration().then(function(reg) {
       reg.showNotification('Une nouvelle notif', {
           "body": "Hello, I'm a notification !",
-          "icon": "./logo.svg",
+          "icon": imgPath,
           "vibrate": [200, 100, 200, 100, 200, 100, 400],
           "tag": "request",
           "actions": [
-            { "action": "yes", "title": "Yes", "icon": "./logo.svg" },
-            { "action": "no", "title": "No", "icon": "./logo.svg" }
+            { "action": "yes", "title": "Yes", "icon": imgPath },
+            { "action": "no", "title": "No", "icon": imgPath }
           ]
         });
     });
