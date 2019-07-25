@@ -72,11 +72,11 @@ function registerValidSW(swUrl, config) {
     .register(swUrl)
     .then(registration => {
 
-      console.log(this)
+      console.log(navigator.serviceWorker)
 
-      this.addEventListener('install', function(event) {
+      navigator.serviceWorker.addEventListener('install', function(event) {
         // The promise that skipWaiting() returns can be safely ignored.
-        this.skipWaiting();
+        navigator.serviceWorker.skipWaiting();
 
         // Perform any other actions required for your
         // service worker to install, potentially inside
@@ -132,6 +132,8 @@ function checkValidServiceWorker(swUrl, config) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl)
     .then(response => {
+        console.log('has fetched');
+        
       // Ensure service worker exists, and that we really are getting a JS file.
       const contentType = response.headers.get('content-type');
       if (
