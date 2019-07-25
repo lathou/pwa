@@ -79,16 +79,6 @@ function displayNotification(message, registration) {
   }
 }
 
-
-function updateSW(){
-  navigator.serviceWorker
-    .getRegistration()
-    .then(registration => {
-      registration.waiting
-        .postMessage("SKIP_WAITING");
-  });
-}
-
 function registerValidSW(swUrl, config) {
 
   navigator.serviceWorker.addEventListener('notificationclick', function(e) {
@@ -129,7 +119,11 @@ function registerValidSW(swUrl, config) {
                   'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
               );
 
-              displayNotification('Une mise à jour a été trouvée, voulez-vous mettre à jour l\'application ?', registration);
+              if(window.confirm('Une mise à jour a été trouvée, voulez-vous mettre à jour l\'application ?')) {
+                console.log('post SKIP_WAITING');
+                registration.waiting.postMessage("SKIP_WAITING");
+                window.location.reload();
+              }
 
               // Execute callback
               if (config && config.onUpdate) {
