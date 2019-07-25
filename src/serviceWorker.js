@@ -81,6 +81,7 @@ function registerValidSW(swUrl, config) {
     // On vérifie si c'est un signal
     // d'activation
     if (event.data === "skipWaiting") {
+      console.log('skipWaiting')
       // Et si c'est le cas, on force
       // l'activation
       navigator.serviceWorker.skipWaiting();
