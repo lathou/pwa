@@ -4,7 +4,7 @@ import './App.css';
 
 const setCookie = () => {
   console.log('setCookie');
-  document.cookie = "SESSID=" + new Date() + ";expires=Fri, 31 Dec 9999 23:59:59 GMT; domain=lathou.github.io; session=true";
+  document.cookie = "SESSID=" + new Date() + ";expires=Fri, 31 Dec 9999 23:59:59 GMT; domain=.github.io; session=true";
 }
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <p>Welcome on our App!</p>
         <a
           className="App-link"
-          href=".github.io/portfolio/app/"
+          href="https://lathou.github.io/portfolio/app/"
           target="_blank"
           rel="noopener noreferrer"
         >
