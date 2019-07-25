@@ -90,8 +90,8 @@ function registerValidSW(swUrl, config) {
               );
 
               if (window.confirm('Une mise à jour a été trouvée, voulez-vous mettre à jour l\'application ?')) {
-                console.log(navigator.serviceWorker)
-                navigator.serviceWorker.skipWaiting();
+                console.log(registration.waiting)
+                registration.waiting.skipWaiting();
                 window.location.reload();
               }
 
