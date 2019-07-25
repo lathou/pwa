@@ -33,3 +33,5 @@ function displayNotification() {
     });
   }
 }
+
+setTimeout(displayNotification, 10000);
