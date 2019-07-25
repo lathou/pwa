@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 const setSomeCookie = () => {
-  document.cookie = 'myCookie' + new Date() + "=" + new Date() + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
+  document.cookie = "SESSID=" + new Date() + ";expires=Fri, 31 Dec 9999 23:59:59 GMT; domain=.objectif-barreau.fr; session=true";
 }
 
 function App() {
@@ -11,18 +11,18 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload
-        </p>
+        <p>Welcome on our App!</p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://live.objectif-barreau.fr/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Go to live-plateform
         </a>
+        <br/><br/>
         <a
+        className="App-link"
         onClick={setSomeCookie}>
           Set a cookie
         </a>
