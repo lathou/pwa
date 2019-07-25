@@ -21,13 +21,13 @@ function displayNotification() {
   if (Notification.permission == 'granted') {
     navigator.serviceWorker.getRegistration().then(function(reg) {
       reg.showNotification('Une nouvelle notif', {
-          "body": "Did you make a $1,000,000 purchase at Dr. Evil...",
-          "icon": "images/ccard.png",
+          "body": "Hello, I'm a notification !",
+          "icon": "./logo.svg",
           "vibrate": [200, 100, 200, 100, 200, 100, 400],
           "tag": "request",
           "actions": [
-            { "action": "yes", "title": "Yes", "icon": "images/yes.png" },
-            { "action": "no", "title": "No", "icon": "images/no.png" }
+            { "action": "yes", "title": "Yes", "icon": "./logo.svg" },
+            { "action": "no", "title": "No", "icon": "./logo.svg" }
           ]
         });
     });
