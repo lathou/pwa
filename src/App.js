@@ -2,6 +2,10 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+const setSomeCookie = () => {
+  document.cookie = 'myCookie' + new Date() + "=" + new Date();
+}
+
 function App() {
   return (
     <div className="App">
@@ -17,6 +21,10 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+        </a>
+        <a
+        onClick={setSomeCookie}>
+          Set a cookie
         </a>
       </header>
     </div>
