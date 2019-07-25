@@ -91,8 +91,11 @@ function registerValidSW(swUrl, config) {
 
               if (window.confirm('Une mise à jour a été trouvée, voulez-vous mettre à jour l\'application ?')) {
                 console.log(registration.waiting)
-                registration.waiting.skipWaiting();
-                window.location.reload();
+                
+                if(registration.waiting) {
+                  registration.waiting.skipWaiting();
+                  window.location.reload();                  
+                }
               }
 
               // Execute callback
