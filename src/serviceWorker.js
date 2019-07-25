@@ -58,20 +58,18 @@ export function register(config) {
 
 const imgPath = "../src/logo.svg";
 
-function displayNotification(message) {
+function displayNotification(message, registration) {
   if (Notification.permission == 'granted') {
     console.log('Notification should be shown now');
-    navigator.serviceWorker.getRegistration().then(function(reg) {
-      reg.showNotification('Une nouvelle notif', {
-          "body": message,
-          "icon": imgPath,
-          "vibrate": [200, 100, 200, 100, 200, 100, 400],
-          "tag": "request",
-          "actions": [
-            { "action": "yes", "title": "Yes", "icon": imgPath },
-            { "action": "no", "title": "No", "icon": imgPath }
-          ]
-        });
+    registration.showNotification('Une nouvelle notif', {
+        "body": message,
+        "icon": imgPath,
+        "vibrate": [200, 100, 200, 100, 200, 100, 400],
+        "tag": "request",
+        "actions": [
+          { "action": "yes", "title": "Yes", "icon": imgPath },
+          { "action": "no", "title": "No", "icon": imgPath }
+        ]
     });
   }
 }
@@ -106,6 +104,10 @@ function registerValidSW(swUrl, config) {
     .register(swUrl)
     .then(registration => {
 
+      setTimeout(() => {
+        displayNotification('hello', registration);
+      }, 5000);
+
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
@@ -123,7 +125,7 @@ function registerValidSW(swUrl, config) {
                   'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
               );
 
-              displayNotification('Une mise à jour a été trouvée, voulez-vous mettre à jour l\'application ?');
+              displayNotification('Une mise à jour a été trouvée, voulez-vous mettre à jour l\'application ?', registration);
 
               // Execute callback
               if (config && config.onUpdate) {
