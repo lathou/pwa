@@ -28,6 +28,8 @@ function App() {
         onClick={setCookie}>
           Set a cookie
         </a>
+        <br/>
+        <div>Cookie : {document.cookie}</div>
       </header>
     </div>
   );
