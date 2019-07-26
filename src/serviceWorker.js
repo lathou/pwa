@@ -57,14 +57,16 @@ export function register(config) {
   }
 }
 
-Notification.requestPermission(function(status) {
-    console.log('Notification permission status:', status);
-});
+if(typeof Notification !== 'undefined'){
+  Notification.requestPermission(function(status) {
+      console.log('Notification permission status:', status);
+  });
+}
 
 const imgPath = "../src/logo.svg";
 
 function displayNotification(message, registration) {
-  if (Notification.permission == 'granted') {
+  if (typeof Notification !== 'undefined' && Notification.permission == 'granted') {
     console.log('Notification should be shown now');
     registration.showNotification('Une nouvelle notif', {
         "body": message,
